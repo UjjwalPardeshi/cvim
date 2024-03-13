@@ -9,16 +9,19 @@ import { useAccount } from 'wagmi';
 
 const Home: NextPage = () => {
   const { writeContract } = useWriteContract();
-  const account = useAccount();
+  const {address,isConnected} = useAccount();
 
   function submit() {
-    writeContract({ 
-      address: '0xba18fF7530b23F2137EdbCAdfBDB78a015CAE018', 
-      abi, 
-      functionName: 'transfer',
-      args: ['0xd3bea327fFe7A959cD414De6081702f3bC9667ab', 2], 
-    });
+    isConnected 
+      ? writeContract({ 
+          address: '0xba18fF7530b23F2137EdbCAdfBDB78a015CAE018', 
+          abi, 
+          functionName: 'Transfer',
+          args: ['0xd3bea327fFe7A959cD414De6081702f3bC9667ab', 1], 
+        })
+      : alert("Please connect to wallet");
   }
+  
 
   return (
     <div className={styles.container}>
@@ -56,14 +59,14 @@ const Home: NextPage = () => {
         <ConnectButton />
 
         <h1 className={styles.title}>
-          Welcome to C-VIM
+          Welcome to Shardeum
         </h1>
-        {account && <button onClick={submit}>Transfer</button>}
+         <button onClick={submit}>Transfer</button>
       </main>
 
       <footer className={styles.footer}>
         <a href="https://rainbow.me" rel="noopener noreferrer" target="_blank">
-          Made with ❤️ by your frens at 🌈
+          we tried 
         </a>
       </footer>
     </div>
