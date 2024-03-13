@@ -74,9 +74,6 @@ const contractABI = [
 
 const contractAddress = '0xba18fF7530b23F2137EdbCAdfBDB78a015CAE018'; // Your contract's address here
 
-const provider = new ethers.providers.JsonRpcProvider('https://mainnet.infura.io/v3/your-infura-project-id');
-const signer = provider.getSigner();
-const contract = new ethers.Contract(contractAddress, contractABI, signer);
 
 export default contract;
 
